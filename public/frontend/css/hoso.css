@@ -1,0 +1,66 @@
+/* main */
+/* frame_user_info.css */
+
+/* choice-details */
+.container-user-details {
+  margin-top: 20px;
+  width: 100%;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.label-form{
+  font-weight: bold;
+  flex: 1;
+  display:inline-block;
+  justify-content:center;
+  align-items:center;
+  padding: 0 0 0 20px;
+}
+
+.text-form{
+    width: 98%;
+    background: #FFFFFF;
+    border:0px;
+    min-width: 240px;
+    padding-left: 10px;
+}
+
+.form-group{
+    margin-top: 10px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+
+.content-form{
+    color: #000000;
+    font-weight: normal;
+    line-height: 35px;
+    flex:3;
+    display: inline-block;
+    position: relative;
+}
+
+.radio-group{
+    display: flex;
+    flex:1;
+    margin-right:18px;
+    align-items:center;
+}
+
+.group-trippletext{
+    width: 100%;
+    display: flex;
+}
+
+.tripletext-form{
+    width: 50px;
+    background: #FFFFFF;
+    flex:1;
+    display: flex;
+    margin-right: 12px;
+    text-align: center;
+    border:0px;
+}
+
