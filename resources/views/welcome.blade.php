@@ -77,9 +77,9 @@
             </div>
 
             <div class="searchbar cart col-md-2 col-sm-2">
-                 <button class="btn" type="button" href="">
+                 <a class="btn" type="button" href="{{ route('showpagecart') }}">
                     <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-                </button> 
+                </a> 
             </div>
         </div>             
     </div>
