@@ -10,7 +10,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <link  href="{{asset('public/frontend/css/homepage.css')}}" rel="stylesheet" type="text/css"/>
-    
+    <link  href="{{asset('public/frontend/css/mainfont.css')}}" rel="stylesheet" type="text/css"/>
+    <link  href="{{asset('public/frontend/css/header.css')}}" rel="stylesheet" type="text/css"/>
+
 </head>
 
 <body>
@@ -35,9 +37,7 @@
                     </div>
                 </div>
             </nav>
-
-
-
+            
             <div class="col-md-3 col-sm-6 col-10 btnnav">
                 
             @if (isset(Auth::user()->email))
@@ -180,80 +180,7 @@
                         </div>
                         <div class="carousel-item categorylist">
                             <div class="row">
-                                <!-- <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>
-                                <a class="card category col-lg" href="">
-                                    <img class="circleimg" src="{{('public/frontend/img/category_shirt.jpg')}}">
-                                    <h5>Tên Sản Phẩm</h5>
-                                </a>  
-                           
-                            </div>     -->
+                               
                             </div>
                         </div>
                     </div>
@@ -283,7 +210,7 @@
                 <div class="gridsp row gx-1">
 
                     @foreach ($products as $product)
-                    <a class="col-md sp" href="">
+                    <a class="col-md sp" href="{{ route('showpageproduct') }}">
                         <div class="card rectcard">
                             <img class="card-img-top" src="{{asset('public/frontend/img/product/'.$product->image_link)}}">      
                             <span>{{$product->name}}</span>

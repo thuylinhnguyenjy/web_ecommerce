@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,14 +18,17 @@ use App\Http\Controllers\CartController;
 
 Route::get('/', [HomeController::class,'index']);
 
-Route::get('/dang-nhap', [AuthController::class,'showpagelogin'])->name('showpagelogin');
-Route::post('/dang-nhap', [AuthController::class,'checklogin'])->name('checklogin');
+Route::get('/login', [AuthController::class,'showpagelogin'])->name('showpagelogin');
+Route::post('/login', [AuthController::class,'checklogin'])->name('checklogin');
 
-Route::get('/dang-xuat', [AuthController::class,'logout'])->name('logout');
+Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 
-Route::get('/dang-ky', function () {
+Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/gio-hang', [CartController::class,'showpagecart'])->name('showpagecart');
+Route::get('/cart', [CartController::class,'index'])->name('showpagecart');
+
+Route::get('/product', [ProductController::class,'index'])->name('showpageproduct');
+
 

@@ -25,6 +25,7 @@ class HomeController extends Controller
         return DB::select("select * from catalog");
     }
 
+
     public function index(){
         return view ('welcome')
             ->with(['userinfo' => $this->getuser()])
