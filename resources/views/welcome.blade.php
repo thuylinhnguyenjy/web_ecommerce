@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -210,7 +210,7 @@
                 <div class="gridsp row gx-1">
 
                     @foreach ($products as $product)
-                    <a class="col-md sp" href="{{ route('showpageproduct') }}">
+                    <a class="col-md sp" href="{{route ('showpageproduct', $product->id) }}">
                         <div class="card rectcard">
                             <img class="card-img-top" src="{{asset('public/frontend/img/product/'.$product->image_link)}}">      
                             <span>{{$product->name}}</span>

@@ -6,14 +6,13 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function gotoproduct(){
-        return ('product');
+    public function gotoproduct($id){
+        return DB::select("select pd.*, ct.name as catalog_name from product pd join catalog ct on pd.catalog_id=ct.id where pd.id = '$id' ")[0];
     }
 
-    public function index(){
+    public function index($id){
         return view ('product')
-            ->with(['productinfo' => $this->gotoproduct()]);
-            
+            ->with('productinfo', $this->gotoproduct($id));       
     }
 
 }

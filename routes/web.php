@@ -29,6 +29,8 @@ Route::get('/register', function () {
 
 Route::get('/cart', [CartController::class,'index'])->name('showpagecart');
 
-Route::get('/product', [ProductController::class,'index'])->name('showpageproduct');
+Route::get('/product/{id}', [ProductController::class,'index'], function($id) {
+    return view('product');
+})->name('showpageproduct');
 
 
