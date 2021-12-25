@@ -70,12 +70,12 @@
 
 .searchbar.logo img {
     width: 100%;
-    max-width: 100px;
+    max-width: 80px;
 }
 
 .searchbar.cart i {
     position: r;
-    font-size: 30px;
+    font-size: 50px;
     color: black;
     float: left;
 }

@@ -27,7 +27,7 @@ class HomeController extends Controller
 
 
     public function index(){
-        return view ('welcome')
+        return view ('home')
             ->with(['userinfo' => $this->getuser()])
             ->with(['products' => $this->getproduct()])
             ->with(['products_flashsale' => $this->getflashsale()])

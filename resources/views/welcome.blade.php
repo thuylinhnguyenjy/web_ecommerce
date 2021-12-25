@@ -8,7 +8,8 @@
     <script src="https://kit.fontawesome.com/c44ecc908b.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link  href="{{asset('public/frontend/css/homepage.css')}}" rel="stylesheet" type="text/css"/>
     <link  href="{{asset('public/frontend/css/mainfont.css')}}" rel="stylesheet" type="text/css"/>
     <link  href="{{asset('public/frontend/css/header.css')}}" rel="stylesheet" type="text/css"/>
@@ -27,12 +28,12 @@
                     </button>
                     <div class="navbar-collapse collapse" id="navbarNavAltMarkup" style="">
                         <div class="navbar-nav">
-                            <a class="nav-link active" aria-current="page" href="" >Home</a>
-                            <a class="nav-link" href="">Features</a>
-                            <a class="nav-link" href="">Pricing</a>
-                            <a class="nav-link " href="" >Community</a>
-                            <a class="nav-link " href="" >Support</a>
-                            <a class="nav-link " href="" >Track order</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route ('showpagehome') }}" >Home</a>
+                            <a class="nav-link" href="{{ route ('showpagehome') }}">Features</a>
+                            <a class="nav-link" href="{{ route ('showpagehome') }}">Pricing</a>
+                            <a class="nav-link " href="{{ route ('showpagehome') }}" >Community</a>
+                            <a class="nav-link " href="{{ route ('showpagehome') }}" >Support</a>
+                            <a class="nav-link " href="{{ route ('showpagetrackorder') }}" >Track order</a>
                         </div>
                     </div>
                 </div>
@@ -48,7 +49,7 @@
                     </a>
                     <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                         <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Tài khoản</a></li>
+                        <li><a class="dropdown-item" href="{{ route('showpageaccount') }}">Tài khoản</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a></li>
                     </ul>
@@ -78,157 +79,20 @@
 
             <div class="searchbar cart col-md-2 col-sm-2">
                  <a class="btn" type="button" href="{{ route('showpagecart') }}">
-                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                    <i class="bi bi-cart3"></i>
+                    <span class="cartbubble"> 
+                        {{Cart::count()}}
+                    </span>
                 </a> 
             </div>
         </div>             
     </div>
 </header>
 
-<div class="container">
-    <div id="banner" class="carousel slide" data-bs-ride="carousel">
+<main>
+@yield('content')
+</main>
 
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-            <img src="{{('public/frontend/img/banner.png')}}" class="d-block" style="width:100%">
-            </div>
-            <div class="carousel-item">
-            <img src="{{('public/frontend/img/banner.png')}}" class="d-block" style="width:100%">
-            </div>
-            <div class="carousel-item">
-            <img src="{{('public/frontend/img/banner.png')}}" class="d-block" style="width:100%">
-            </div>
-        </div>
-        
-        <button class="carousel-control-prev" type="button" data-bs-target="#banner" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#banner" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
-    </div>
-
-    <div class="container-md pt-4">
-        <div class="row">
-            <div class="col-md-3">   
-                <button type="button" class="btn-listcontent" style="color: black; background-color: #B4EDFF;">Mall</button>
-            </div>
-             <div class="col-md-3">   
-                <button type="button" class="btn-listcontent">  Mã Giảm Giá</button>
-            </div>
-             <div class="col-md-3">   
-                <button type="button" class="btn-listcontent" style="color: black; background-color: #B4EDFF;">Nạp Thẻ và Voucher</button>
-            </div>
-             <div class="col-md-3">   
-                <button type="button" class="btn-listcontent">Global</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="boxflashsale container my-4">
-
-        <div class="flashsalecontent">
-           
-                <div class="row gx-1 rowfls">
-                    
-                    <div>
-                        <a class="btn btn-fls-viewmore pb-2" href="">Xem thêm &gt; </a>
-                    </div>
-
-                    <div class="gridspfls">
-                        @foreach ($products_flashsale as $product)
-                        <a class="col-lg fls" href="">
-                            <div class="card rectcard">
-                                <img class="card-img-top" src="{{asset('public/frontend/img/product/'.$product->image_link)}}">      
-                                <span>{{$product->name}}</span>
-                                <div>{{$product->price}} đ</div>
-                            </div> 
-                        </a>
-                        @endforeach
-                    </div>
-                    
-                </div>
-        </div>  
-        
-        <div class="flashsaletitle">
-            <label class="title">Flash Sale</label>
-        </div>
-
-    </div>
-
-    <div class="boxcategory container p-0 ">
-        <div class="container" style="background-color: #FBE061; height: 55px;">
-            <label class="title">Danh Mục</label>
-        </div>
-        <div class="container" style="background-color: #B4EDFF; height: 100%; position: relative; justify-content: center; display: flex;">
-            <div style="margin: 8px; width: 100%;">
-                <div id="categorylist" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false" style="position: static; margin: auto;">
-                    <div class="carousel-inner" style="margin-left: auto;">
-                        <div class="carousel-item active categorylist">
-                            <div class="row gx-1" style="text-align: center;">
-
-                                @foreach ($catalogs as $catalog)
-                                <a class="col-lg " href="">
-                                    <div class="card category">
-                                        <img class="circleimg" src="{{asset('public/frontend/img/catalog/'.$catalog->image_link)}}">      
-                                        <span>{{$catalog->name}}</span>
-                                    </div> 
-                                </a>
-                                @endforeach
-
-                            </div>    
-                        </div>
-                        <div class="carousel-item categorylist">
-                            <div class="row">
-                               
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <button class="arrows carousel-control-prev" type="button" data-bs-target="#categorylist" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon blue"></span>
-                        </button>
-                        <button class="arrows carousel-control-next" type="button" data-bs-target="#categorylist" data-bs-slide="next">
-                            <span class="carousel-control-next-icon blue"></span>
-                        </button>
-                    </div>
-                
-                </div>
-            </div>
-        </div>
-        
-    </div>
-
-    <div class="boxproduct container p-0 pt-4">
-        <div class="container" style="background-color: #FBE061; height: 55px;">
-            <label class="title">Sản Phẩm</label>
-        </div>
-
-        <div class="container boxsanpham">
-            <div style="margin-top: 8px;">
-                <div class="gridsp row gx-1">
-
-                    @foreach ($products as $product)
-                    <a class="col-md sp" href="{{route ('showpageproduct', $product->id) }}">
-                        <div class="card rectcard">
-                            <img class="card-img-top" src="{{asset('public/frontend/img/product/'.$product->image_link)}}">      
-                            <span>{{$product->name}}</span>
-                            <div>{{$product->price}} đ</div>
-                        </div> 
-                    </a>
-                    @endforeach
-                    
-                </div>
-                
-                <div style="justify-content: center; display: flex;">
-                    <button class="btnviewmore">Xem thêm</button>
-                </div>
-    </div>
-</div>
-
-</div>
-</div>
 <!-- <div class="footer container">
     <div class="container p-0 pt-4 my-4 socialfooter" style="background-color: #f2f2f2; position: relative;">
         <div style="display: flex; justify-content: center; width: 100%;">

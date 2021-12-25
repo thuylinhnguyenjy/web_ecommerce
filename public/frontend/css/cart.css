@@ -1,3 +1,10 @@
+a {
+    color: black !important;
+}
+
+a:hover {
+    color: black;
+}
 
 .titlepart {
     background-color: rgb(254, 172, 184);
@@ -7,6 +14,7 @@
 }
 
 .main-imgproduct img{
+    border-radius: 30px;
     max-width: 300px;
     max-height: 350px;
     height: fit-content;
@@ -18,7 +26,7 @@
     position: relative;
     /* padding-left: 5%; */
     /* padding-right: 5%; */
-    padding-block: 20px;
+    padding-block: 10px;
 }
 
 .boxproduct {
@@ -75,7 +83,7 @@
     margin-bottom: 1%;
     box-sizing: border-box;
     position: static;
-    width: fit-content;
+    /* width: fit-content; */
     background: rgb(254, 172, 184);
     border-width: 1px;
     border-style: solid;
@@ -161,16 +169,19 @@
 }
 
 .btn-return {
+    /* padding: 10px; */
     box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 0px;
-    /* color: white; */
-    width: 45%;
+    /* color: white !important; */
+    height: 40px;
     background: white;
     border-radius: 5px;
+    border: none;
 }
 
 .btn-buynow {
-    box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 0px;
+    box-shadow: rgb(0 0 0 / 25%) 2px 2px 0px;
     color: white;
+    border: none;
     width: 45%;
     background: rgb(255, 0, 0);
     border-radius: 5px;
@@ -200,18 +211,18 @@ input[type="checkbox"] {
 }
 
 .totalprice {
-    height: 100%;
+    /* height: 100%; */
     /* padding-left: 5%; */
     /* padding-right: 5%; */
     /* margin-left: 1px; */
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
     padding-block: 30px;
     border-radius: 24px;
     /* background: #FEACB8; */
     position: relative;
-    /* margin-top:20px; */
-    padding-block: 20px;
+    margin-top: 20px;
+    /* padding-block: 20px; */
 }
 
 .break-line{
@@ -228,7 +239,7 @@ input[type="checkbox"] {
 
 .bill {
     /* width: fit-content; */
-    display: flex;
+    /* display: flex; */
     align-items: center;
     margin-top: 15px;
 }

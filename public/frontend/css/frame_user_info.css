@@ -22,7 +22,7 @@ header .container {
 header a {
   margin-top: 10px;
   float: right;
-  color: #18A0FB !important;
+  /* color: #18A0FB !important; */
 }
 
 /* main */
@@ -123,8 +123,9 @@ header a {
     background-color:#FBE061;
     font-size: 22px;
     line-height: 23px;
-    width: fit-content;
     position: relative;
+    /* width: 55px !important; */
+    max-width: 250px !important;
 }
 /* hover vào button thêm */
 .btn-add:hover{
@@ -170,6 +171,7 @@ header a {
     .btn-add {
       float: right;
       margin-right: 0px;
+      width: 55px !important;
     }
 
 }
@@ -197,6 +199,7 @@ header a {
     .btn-add {
       float: right;
       margin-right: 0px;
+      width: 55px !important;
     }
 
      .title-choice-details h3 {
@@ -212,7 +215,7 @@ header a {
     .user-avatar{
       width: 100%;
       min-height: 240px;
-      max-height: 240px;
+      /* max-height: 200px; */
       position: relative;
     }
 
@@ -244,3 +247,4 @@ header a {
       font-size: 21px;
     }
 }
+

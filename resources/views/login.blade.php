@@ -26,11 +26,13 @@
                 </div>
             </div>
         </div>
+
     </header>
 
     <main>
         <div class="container" style="background-color: #B4EDFF;">
             <div class="row">
+
                 <form class="col-md-6" method="POST" action="{{ route('checklogin') }}">
                     @csrf    
                     <div class="form-text-group">
@@ -40,9 +42,28 @@
 
                         <div class="form-group">
                             <input class="form-control" id="password" name="password" type="password" placeholder="Mật khẩu">
-                            <i class="far fa-eye-slash passvisible" aria-hidden="true"></i>
+                            <i class="far fa-eye-slash togglePassword" name="togglePassword" aria-hidden="true"></i>
                         </div>
                     </div>
+
+                    @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-block">
+                        <span> {{ $message }} </span>
+                        <a type="button" class="close" data-dismiss="alert">x</a>
+                    </div>
+                    @endif
+                
+                    @if (count($errors) > 0)
+                    <div class="alert alert-danger alert-block">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                            <li> {{ $error }} </li>
+                            @endforeach
+                        </ul>
+                        <a type="button" class="close" data-dismiss="alert">x</a>
+                    </div>
+                    @endif
+
                     <div class="form-ques register">
                         Chưa có tài khoản ? 
                         <a class="text-dangky"><strong>Đăng ký</strong></a>
@@ -67,8 +88,37 @@
             
         </div>
     </main>
+
+<script>
+    const togglePassword = document.querySelector('.togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', function (e) {
     
-    
+        if (password.type=="password"){
+            password.type = "text";
+            this.classList.add('fa-eye-slash');
+            this.classList.remove('fa-eye');
+        } else {
+            password.type = "password";
+            this.classList.add('fa-eye');
+            this.classList.remove('fa-eye-slash');
+        }
+});
+</script>
+
+<script>
+    const close = document.querySelector('.close');
+    const alert = document.querySelector('.alert');
+
+    close.addEventListener('click', function (e) {
+        alert.remove();
+    });
+</script>
+
 
 </body>
+
+
+
 </html>

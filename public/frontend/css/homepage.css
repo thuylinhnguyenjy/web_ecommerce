@@ -53,7 +53,7 @@
     height: 40px;
     line-height: 40px;
     background: #FEACB8;
-    /* color: white; */
+    color: white;
     border-style: none;
     border-radius: 32.5px;
     overflow: hidden;
@@ -156,6 +156,7 @@
 }
 
 .card.rectcard span {
+    min-height: 60px;
     text-align: left;
     padding-inline-start: 2%;
     padding-inline-end: 2%;
@@ -194,8 +195,9 @@
 }
 
 .btnviewmore {
-    background-color:black; 
-    color: white; 
+    margin-bottom: 30px;
+    background-color:black;
+    color: white;
     box-sizing: border-box;
     border-radius: 6px;
     text-align: center;

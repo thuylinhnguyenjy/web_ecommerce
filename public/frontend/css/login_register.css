@@ -116,12 +116,29 @@ margin-top: 10%;
     padding: 5%;
  }
 
- .passvisible {
+ .togglePassword {
   float: right;
   color: gray;
   font-size: 25px;
   margin-top: -35px;
   margin-right: 10px;
+}
+
+.close {
+  float: right; 
+  text-decoration:none; 
+  color: #842029;
+}
+
+.alert {
+   margin-top: 10px; 
+   display: flex; 
+   align-items: center; 
+   justify-content: space-between;
+}
+
+ul {
+  margin-top: revert;
 }
 
  @media (min-width: 767px) and (max-width: 992px) {

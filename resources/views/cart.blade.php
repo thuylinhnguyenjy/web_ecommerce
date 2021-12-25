@@ -10,9 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/frame_user_info.css')}}"/> -->
-    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/cart.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/header.css')}}"/>   
+    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/cart.css')}}"/> 
     <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/mainfont.css')}}"/>   
 
     <!-- number spinner -->
@@ -38,95 +36,44 @@
 </head>
 
 <body>
-    <header>
-        <div class="container-fluid" style="background: #B4EDFF;">
-            <div class="row row-mainnav">
-                <nav class="col-md-9 col-sm-6 col-2 mainnav navbar navbar-expand-lg navbar-light bg-light">
-                    <div style="width: 100%">
-                        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="navbar-collapse collapse" id="navbarNavAltMarkup" style="">
-                            <div class="navbar-nav">
-                                <a class="nav-link active" aria-current="page" href="" >Home</a>
-                                <a class="nav-link" href="">Features</a>
-                                <a class="nav-link" href="">Pricing</a>
-                                <a class="nav-link " href="" >Community</a>
-                                <a class="nav-link " href="" >Support</a>
-                                <a class="nav-link " href="" >Track order</a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
+   @extends('welcome')
 
-                <div class="col-md-3 col-sm-6 col-10 btnnav">
-                    
-                @if (isset(Auth::user()->email))
-                    <div class="flex-shrink-0 dropdown">
-                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                            <strong>{{Auth::user()->name}}</strong>    
-                            <img src="{{asset('public/frontend/img/user/'.Auth::user()->avatar)}}" alt="mdo" width="55" height="55" class="rounded-circle">
-                        </a>
-                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Tài khoản</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a></li>
-                        </ul>
-                    </div>
-                @else 
-                    <a type="button" id="btnlogin" href="{{ route('showpagelogin') }}">Login</a>
-                    <a type="button" id="btnregister">Register</a>
-                @endif
-                </div>
-
-            </div>
-
-            <div class="row pt-4 pb-3" style="position: relative">
-                <div class="searchbar logo col-md-2 col-sm-2">
-                    <img src="{{('public/frontend/img/logo.png')}}">
-                </div>
-
-                <div class="searchbar search col-md-8 col-sm-8 col-12"><div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>                           
-                </div>
-
-                <div class="searchbar cart col-md-2 col-sm-2">
-                    <a class="btn" type="button" href="{{ route('showpagecart') }}">
-                        <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-                    </a> 
-                </div>
-            </div>             
-        </div>
-    </header>
-
+    @section('content')
     <main>
 
-        @foreach ($cartproducts as $product)
+        <!-- @if (session('message'))
+            <div>{{ session ('message') }}</div>
+        @endif -->
+
+        <?php
+        $cartlist = Cart::content();
+        ?>
+    
+    <form method='POST' action= "{{ route ('showpagecheckout') }}" >
+
+    @csrf
+        @foreach ($cartlist as $product)
         <div class="container product">
             <div class="container row boxproduct">
                 <div class="row" style="margin-bottom: 1%;">
-                    <div class="col-10 checkprodcut">
-                        <input type="checkbox">
+                    <div class="col-10 checkproduct">
+                        <input type="checkbox" name="product_selected">
                         <span>Mall</span>
                     </div>        
-                <div class="col-2 remove"><i class="fas fa-times" aria-hidden="true"></i></div>
+                <a class="col-2 remove" href="{{URL::to('deletecart/'.$product->rowId) }}">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </a>
             </div>
 
             <div class="row">
                 <div class="col-lg-5 container imgproduct">
                     <div class="main-imgproduct">
-                        <img src="{{asset('public/frontend/img/product/'.$product->image_link)}}">
+                        <img src="{{asset('public/frontend/img/product/'.$product->options->image)}}">
                     </div>
                 </div>
 
                 <div class="col-lg-7 container detailproduct">
+                    <input type='hidden' name="productrowId" value="$product->rowId">
                     <div class="name-product">
                         {{$product->name}}
                     </div>
@@ -157,7 +104,7 @@
                     <div class="row price-product">
                         <div class="row">
                             <div class="col-sm-7 discount-price-product">  
-                                <span>đ {{$product->amount}} </span>
+                                <span>{{'đ '.number_format ($product->price)}} </span>
                             </div>
                             <div class="col-sm-5 original-price-product">
                                 <span>đ {{$product->price}} </span>
@@ -184,11 +131,11 @@
                                     Số lượng
                                 </div>
                                 <div class="col-md-4 col-sm-6 col-6">
-                                    <div class="input-group number-spinner"">
+                                    <div class="input-group number-spinner">
                                         <span class="input-group-btn">
                                             <button class="btn" data-dir="dwn"><span class="fa fa-minus" style="font-size: 10px; position: absolute;" aria-hidden="true"></span></button>
                                         </span>
-                                        <input type="text" class="form-control text-center" value="1">
+                                        <input type="text" class="form-control text-center" value="{{$product->qty}}">
                                         <span class="input-group-btn">
                                             <button class="btn" data-dir="up"><span class="fa fa-plus" style="font-size: 10px; position: absolute;" aria-hidden="true"></span></button>
                                         </span>
@@ -229,18 +176,22 @@
                     </div>
                     <div class="col-lg-4 billprice">
                         <span>Tổng thanh toán: </span>
-                        <span class="totalbill">đ0</span>
+                        <span class="totalbill">{{'đ '.(Cart::subtotal()) }}</span>
                     </div>
                     <div class="col-lg-5">
                         <div class="row button-buying-product">
-                        <div class="col-md-6 col-sm-12 btn btn-return">Quay lại</div>
-                        <div class="col-md-6 col-sm-12 btn btn-buynow">Mua ngay</div>
+                            <button class="col-md-6 col-sm-12 btn btn-return">Quay lại </button>
+                            <button class="col-md-6 col-sm-12 btn btn-buynow" type="submit" >Thanh toán</button>
+                       
                     </div>
                 </div>
             </div>
         </div>
+
+    </form>
    
     </main>
+    @endsection
 
 </body>
 </html>     

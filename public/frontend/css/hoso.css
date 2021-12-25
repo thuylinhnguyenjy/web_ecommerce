@@ -3,6 +3,7 @@
 
 /* choice-details */
 .container-user-details {
+  padding: 20px;
   margin-top: 20px;
   width: 100%;
   position: relative;
@@ -64,3 +65,20 @@
     border:0px;
 }
 
+.btn-form {
+  padding-top: 50px;
+}
+
+.btn-form button {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.btn-save {
+    background-color: red !important;
+    color: white !important;
+}
+
+.btn-return {
+    background-color: white !important;
+}
