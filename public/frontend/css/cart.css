@@ -51,7 +51,7 @@ a:hover {
     display: flex;
     max-height: 350px;
     width: 100%;
-    background-color: white;
+    /* background-color: white; */
     border-radius: 30px;
     justify-content: center;
 }
@@ -217,7 +217,7 @@ input[type="checkbox"] {
     /* margin-left: 1px; */
     /* display: flex; */
     /* justify-content: center; */
-    padding-block: 30px;
+    /* padding-block: 30px; */
     border-radius: 24px;
     /* background: #FEACB8; */
     position: relative;

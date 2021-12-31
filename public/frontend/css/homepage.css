@@ -104,15 +104,20 @@
     color: #000000;
 }
 
+#categorylist {
+    padding-inline: 15px;
+    position: static; 
+    margin: auto;
+}
+
 #categorylist .row {
     justify-content: center;
     display: grid;
-    grid-template-columns: repeat(9, 1fr);
 }
 
 .card.category {
     position: relative;
-    width: 100%;
+    width: 98%;
     height: 98%;
     align-items: center;
     justify-content: center;
@@ -208,14 +213,15 @@
 }
 
 hr {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  /* margin-top: 3rem; */
+  /* margin-bottom: 3rem; */
   border: 0;
   border-top: 1px solid black;
   width: 80%;
 }
 
 .btn.footer {
+    text-align: inherit;
     float: left;
     margin-left: -15px;
 }
@@ -485,4 +491,9 @@ a {
 
 .category span {
     min-height: 60px;
+}
+
+.footercol .row div{
+    display: flex;
+    justify-content: center;
 }

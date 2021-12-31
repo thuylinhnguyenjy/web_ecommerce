@@ -12,6 +12,14 @@ class AuthController extends Controller
         return view('login');
     }
 
+    public function showpageregister(){
+        return view('register');
+    }
+
+    public function showpageconfirmregis(){
+        return view('confirm-regis');
+    }
+
     public function checklogin(Request $request){
     
         $this->validate($request, [

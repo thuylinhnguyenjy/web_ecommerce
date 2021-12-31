@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Auth;
 
 class AccountController extends Controller
@@ -32,5 +33,11 @@ class AccountController extends Controller
         return view ('voucheraccount');
     }
 
+    public function changeinfo(Request $request){
+        $user = Auth::user()->id;
+        DB::update("UPDATE `user` SET `name`='$request->accname',`phone`='$request->phone' WHERE id='$user'");
+        return Redirect::to('/account');
+
+    }
     
 }

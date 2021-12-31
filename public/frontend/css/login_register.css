@@ -124,6 +124,14 @@ margin-top: 10%;
   margin-right: 10px;
 }
 
+.confirm_togglePassword {
+  float: right;
+  color: gray;
+  font-size: 25px;
+  margin-top: -35px;
+  margin-right: 10px;
+}
+
 .close {
   float: right; 
   text-decoration:none; 

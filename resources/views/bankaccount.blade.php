@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="container-user-details" style="background-color: #B4EDFF;">
-                        aaaaa
+                        Bạn chưa liên kết thẻ
                     </div>   
                 </div>
                       
@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="container-user-details" style="background-color: #B4EDFF;">
-                        aaaaa
+                        Bạn chưa liên kết tài khoản
                     </div>
                 </div>
                 

@@ -66,7 +66,7 @@
 
                     <div class="form-ques register">
                         Chưa có tài khoản ? 
-                        <a class="text-dangky"><strong>Đăng ký</strong></a>
+                        <a class="text-dangky" href=" {{ route ('showpageregister') }} "><strong>Đăng ký</strong></a>
                     </div>
                     <div class="form-btn-group">
                         <div class="button-container">
@@ -89,36 +89,8 @@
         </div>
     </main>
 
-<script>
-    const togglePassword = document.querySelector('.togglePassword');
-    const password = document.querySelector('#password');
-
-    togglePassword.addEventListener('click', function (e) {
-    
-        if (password.type=="password"){
-            password.type = "text";
-            this.classList.add('fa-eye-slash');
-            this.classList.remove('fa-eye');
-        } else {
-            password.type = "password";
-            this.classList.add('fa-eye');
-            this.classList.remove('fa-eye-slash');
-        }
-});
-</script>
-
-<script>
-    const close = document.querySelector('.close');
-    const alert = document.querySelector('.alert');
-
-    close.addEventListener('click', function (e) {
-        alert.remove();
-    });
-</script>
-
+<script src="public/frontend/js/login_register.js"></script>
 
 </body>
-
-
 
 </html>

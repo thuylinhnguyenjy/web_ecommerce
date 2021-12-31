@@ -6,14 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sản phẩm</title>
     <script src="https://kit.fontawesome.com/c44ecc908b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/hoso.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/frame_user_info.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/buyingpage.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/header.css')}}"/>   
     <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/mainfont.css')}}"/>  
+    
+    <link  href="{{asset('public/frontend/css/homepage.css')}}" rel="stylesheet" type="text/css"/>
     
 </head>
 
@@ -29,27 +34,27 @@
             {{$productinfo->catalog_name}}
         </div>
         
-        <div class="container boxproduct">
-            
-            <div class="col-lg-5 container imgproduct">
+        <div class="boxproduct">
+            <div class="row">
+            <div class="col-lg-5 col-md-12 container imgproduct">
                 <div class="main-imgproduct">
                     <img src="{{asset('public/frontend/img/product/'.$productinfo->image_link)}}">
                 </div>
 
-                <div class="row">
+                <!-- <div class="row">
                     <div id="previewlist-imgproduct" class="carousel slide pointer-event" data-bs-interval="false">
                         <div class="carousel-inner">
                             <div class="carousel-item">
                                 <div class="row ">
                                     <div class="col-md-3 preview-imgproduct-item">
-                                        <img src="{{asset('public/frontend/img/product/'.$productinfo->image_link)}}" width="100%">
+                                        <img src="http://localhost:8080/testinga/public/frontend/img/product/shoes_bitishunter_armygreen_DSMH05100REU_reu_1.jpg" width="100%">
                                     </div>
                                 </div>
                             </div>        
                             <div class="carousel-item active">
                                 <div class="row ">
                                     <div class="col-md-3 preview-imgproduct-item">
-                                        <img src="{{asset('public/frontend/img/product/'.$productinfo->image_link)}}" width="100%">
+                                        <img src="http://localhost:8080/testinga/public/frontend/img/product/shoes_bitishunter_armygreen_DSMH05100REU_reu_1.jpg" width="100%">
                                     </div>
                                 </div>
                             </div>        
@@ -62,13 +67,14 @@
                             <span class="carousel-control-next-icon blue"></span>
                         </button>
                     </div> 
-                </div>
+                </div> -->
 
             </div>
 
-            <div class="col-lg-7 container detailproduct">
-                <form method='POST' action="{{route ('addtocart') }}">
-                    @csrf  
+            <div class="col-lg-7 col-md-12 container detailproduct">
+                <form method="POST" action="{{route('addtocart')}}">
+                    @csrf 
+                   
                     <div class="name-product"> {{$productinfo->name}} </div>
 
                     <div class="row info-product">
@@ -103,13 +109,11 @@
                                 <span>đ {{$productinfo->price}} </span>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="container discount-percent-product">
-                                Giảm
-                                <span> {{$productinfo->discount}} </span>
-                                %
+                        
+                            <div class="discount-percent-product">
+                                <span> Giảm {{$productinfo->discount}} % </span>
                             </div>
-                        </div>
+                    
                     </div>
                     
                     <div class="row delivery-product">
@@ -120,17 +124,17 @@
                     <div class="row count-quantity-product">                    
                         <div class="container">
                             <div class="row" style="width: 110%;">
-                                <div class="col-md-3 col-sm-6 col-6">
+                                <div class="col-md-3 col-sm-6">
                                     Số lượng
                                 </div>
-                                <div class="col-md-4 col-sm-6 col-6">
+                                <div class="col-md-4 col-sm-6">
                                     <div class="input-group number-spinner">
                                         <span class="input-group-btn">
-                                            <button class="btn" data-dir="dwn"><span class="fa fa-minus" style="font-size: 10px; position: absolute;" aria-hidden="true"></span></button>
+                                            <button type="button" class="btn" data-dir="dwn"><span class="fa fa-minus" style="font-size: 10px; position: absolute;" aria-hidden="true"></span></button>
                                         </span>
-                                        <input name="qty" type="text" class="form-control text-center" value="1">
+                                        <input name="qty" type="text" class="form-control text-center" value="1" readonly="readonly" style="background-color: rgb(254, 172, 184)">
                                         <span class="input-group-btn">
-                                            <button class="btn" data-dir="up"><span class="fa fa-plus" style="font-size: 10px; position: absolute;" aria-hidden="true"></span></button>
+                                            <button type="button" class="btn" data-dir="up"><span class="fa fa-plus" style="font-size: 10px; position: absolute;" aria-hidden="true"></span></button>
                                         </span>
                                     </div>
                                 </div>
@@ -142,18 +146,18 @@
                         </div>
                     </div>
 
-                    <input type="hidden" name="productid" value=" {{$productinfo->id}}">Mua ngay</input>
+                    <input type="hidden" name="productid" value="{{$productinfo->id}}">
 
                     <div class="row button-buying-product">
-                        <div class="col-md-6 col-sm-12 btn btn-addtocart">Thêm vào giỏ hàng</div>
-                        <button type="submit" class="col-md-6 col-sm-12 btn btn-buynow">Mua ngay</button>
+                        <button type="submit" name="addproduct" class="col-md-6 col-sm-12 btn-addtocart">Thêm vào giỏ hàng</button>
+                        <button type="submit" name="buynow" class="col-md-6 col-sm-12 btn-buynow">Mua ngay</button>
                     </div>    
                 </form>
             </div>
-        </div>
+        </div></div>
     </div>
         
-    <!-- <div class="container product shopowner my-4 ">
+    <div class="container product shopowner my-4 ">
         <div class="row d-flex" style="align-items: center;">
             <div class="col-sm-3" style=" position: relative; display: flex; justify-content: center; ">
                 <div class="avatar-shopowner">
@@ -251,29 +255,35 @@
             </div>
             
         </div>
-    </div> -->
+    </div>
 
 @endsection
 
 </body>
 
 <script>
-        $(document).on('click', '.number-spinner button', function () {    
-            var btn = $(this),
-            oldValue = btn.closest('.number-spinner').find('input').val().trim(),
-            newVal = 0;
+$(document).on('click', '.number-spinner button', function () {    
+        var btn = $(this),
+        oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+        newVal = 0;
             
-            if (btn.attr('data-dir') == 'up') {
-                newVal = parseInt(oldValue) + 1;
-            } else {
-                if (oldValue > 1) {
-                    newVal = parseInt(oldValue) - 1;
-                } else {
-                    newVal = 1;
-                }
+        if (btn.attr('data-dir') == 'up') {
+             if (oldValue>=10) {
+                newVal = 10;
             }
-            btn.closest('.number-spinner').find('input').val(newVal);
-        });
-    </script>
-
+            else {
+                newVal = parseInt(oldValue) + 1;
+            }
+        }
+        else {
+            if (oldValue > 1) {
+                newVal = parseInt(oldValue) - 1;
+            } 
+            else {
+                newVal = 1;
+            }
+        }
+        btn.closest('.number-spinner').find('input').val(newVal);
+    });
+</script>
 </html>

@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\SearchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,21 +24,30 @@ use App\Http\Controllers\CheckoutController;
 Route::get('/', [HomeController::class,'index']);
 Route::get('/home', [HomeController::class,'index'])->name('showpagehome');
 
+
 //login logout register
 Route::get('/login', [AuthController::class,'showpagelogin'])->name('showpagelogin');
 Route::post('/login', [AuthController::class,'checklogin'])->name('checklogin');
 
 Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 
-Route::get('/register', function () {
-    return view('register');
-});
+Route::get('/register', [AuthController::class, 'showpageregister'])->name('showpageregister');
+Route::post('/register-confirm', [AuthController::class, 'showpageconfirmregis'])->name('showpageconfirmregis');
+
+//search
+Route::get('/search', [SearchController::class,'index'])->name('showpagesearch');
 
 //cart
 Route::get('/cart', [CartController::class,'index'])->name('showpagecart');
 Route::get('/addtocart', [CartController::class,'addtocart'])->name('addtocart');
 Route::post('/addtocart', [CartController::class,'addtocart'])->name('addtocart');
 Route::get('/deletecart/{rowId}', [CartController::class,'deletecart'] )->name('deletecart');
+Route::get('/increasequantity/{rowId}', [CartController::class,'increasequantity'] )->name('increasequantity');
+Route::get('/decreasequantity/{rowId}', [CartController::class,'decreasequantity'] )->name('decreasequantity');
+Route::get('/getprice', [CartController::class,'getprice'] )->name('getprice');
+
+// Route::get('/addproducttocart', [CartController::class,'addproducttocart'])->name('addproducttocart');
+// Route::post('/addproducttocart', [CartController::class,'addproducttocart'])->name('addproducttocart');
 
 Route::get('/product/{id}', [ProductController::class,'index'], 
     function($id) {
@@ -59,6 +69,7 @@ Route::get('/account-address', [AccountController::class,'showaddress'])->name('
 Route::get('/account-change-password', [AccountController::class,'changepassword'])->name('changepassword');
 Route::get('/account-transactions', [AccountController::class,'showtransaction'])->name('showtransaction');
 Route::get('/account-voucher', [AccountController::class,'showvoucher'])->name('showvoucher');
+Route::post('/changeinfo', [AccountController::class,'changeinfo'])->name('changeinfo');
 
 
 //order

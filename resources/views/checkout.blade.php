@@ -38,9 +38,7 @@
  @extends('welcome')
  @section('content')
 
-        <?php
-        $cartlist = Cart::content();
-        ?>       
+               
         
     <form method="POST" action="{{ route ('createtrans') }}" >
         @csrf

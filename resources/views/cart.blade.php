@@ -13,25 +13,6 @@
     <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/cart.css')}}"/> 
     <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/mainfont.css')}}"/>   
 
-    <!-- number spinner -->
-    <script>
-        $(document).on('click', '.number-spinner button', function () {    
-            var btn = $(this),
-            oldValue = btn.closest('.number-spinner').find('input').val().trim(),
-            newVal = 0;
-            
-            if (btn.attr('data-dir') == 'up') {
-                newVal = parseInt(oldValue) + 1;
-            } else {
-                if (oldValue > 1) {
-                    newVal = parseInt(oldValue) - 1;
-                } else {
-                    newVal = 1;
-                }
-            }
-            btn.closest('.number-spinner').find('input').val(newVal);
-        });
-    </script>
 
 </head>
 
@@ -57,7 +38,7 @@
             <div class="container row boxproduct">
                 <div class="row" style="margin-bottom: 1%;">
                     <div class="col-10 checkproduct">
-                        <input type="checkbox" name="product_selected">
+                        <input type="checkbox" name="product_selected[]" value="{{$product->rowId}}" class="checkboxproduct">
                         <span>Mall</span>
                     </div>        
                 <a class="col-2 remove" href="{{URL::to('deletecart/'.$product->rowId) }}">
@@ -66,7 +47,8 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-5 container imgproduct">
+                <div class="d-flex align-items-center">
+                <div class="col-lg-4 container imgproduct">
                     <div class="main-imgproduct">
                         <img src="{{asset('public/frontend/img/product/'.$product->options->image)}}">
                     </div>
@@ -133,11 +115,11 @@
                                 <div class="col-md-4 col-sm-6 col-6">
                                     <div class="input-group number-spinner">
                                         <span class="input-group-btn">
-                                            <button class="btn" data-dir="dwn"><span class="fa fa-minus" style="font-size: 10px; position: absolute;" aria-hidden="true"></span></button>
+                                            <a type="button" class="btn" data-dir="dwn" href="{{URL::to('decreasequantity/'.$product->rowId) }}"><span class="fa fa-minus" style="font-size: 10px; position: absolute;" aria-hidden="true"></span></a>
                                         </span>
-                                        <input type="text" class="form-control text-center" value="{{$product->qty}}">
+                                        <input type="text" class="form-control text-center" value="{{$product->qty}}" readonly="readonly" style="background-color: rgb(254, 172, 184)">
                                         <span class="input-group-btn">
-                                            <button class="btn" data-dir="up"><span class="fa fa-plus" style="font-size: 10px; position: absolute;" aria-hidden="true"></span></button>
+                                            <a type="button" class="btn" data-dir="up" href="{{URL::to('increasequantity/'.$product->rowId) }}"><span class="fa fa-plus" style="font-size: 10px; position: absolute;" aria-hidden="true"></span></a>
                                         </span>
                                     </div>
                                 </div>
@@ -149,7 +131,7 @@
                         </div>
                     </div>
                 </div>
-                </div>
+                </div></div>
             </div>    
         </div>
         @endforeach
@@ -168,8 +150,9 @@
                     </div>
                 </div>
                 <div class="break-line"> </div>
-                <div class="container row bill">
-                    <div class="col-lg-3">
+                <div class="container bill pt-4">
+                <div class="row">
+                    <div class="col-lg-3 d-flex align-items-center">
                         <input type="checkbox" value="Tất cả">
                         <label>Tất cả</label>  
                         <a class="allremove">Xoá</a>
@@ -180,8 +163,8 @@
                     </div>
                     <div class="col-lg-5">
                         <div class="row button-buying-product">
-                            <button class="col-md-6 col-sm-12 btn btn-return">Quay lại </button>
-                            <button class="col-md-6 col-sm-12 btn btn-buynow" type="submit" >Thanh toán</button>
+                            <button class="col-md-6 col-sm-12 btn-return" type="button" onclick="window.history.back()">Quay lại </button>
+                            <button class="col-md-6 col-sm-12 btn-buynow" type="submit" >Thanh toán</button>
                        
                     </div>
                 </div>
@@ -192,6 +175,61 @@
    
     </main>
     @endsection
+
+<script>
+    $(document).ready(function(){
+            
+            $('.checkboxproduct').change(function(){
+                 if ($(this).is(':checked')) {
+                alert('ddddd');
+                 } 
+                $productid = $(this).val();
+                    // $.get("getprice.php?productid="+productid,function(data,status){
+                    //     $(".totalbill").html(data);  
+                    // });
+
+                $.ajax {
+                    method: "post",
+                    url: "/getprice",
+                    data: {
+                        'productid': productid,
+                    },
+                    success: function (response) {
+                        $(".totalbill").val($data);
+                        alert("ffff");
+                    }
+                }
+
+                }
+            
+        }); 
+</script>
+
+<script>
+$(document).on('click', '.number-spinner button', function () {    
+        var btn = $(this),
+        oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+        newVal = 0;
+            
+        if (btn.attr('data-dir') == 'up') {
+             if (oldValue>=100) {
+                newVal = 100;
+            }
+            else {
+                newVal = parseInt(oldValue) + 1;
+            }
+        }
+        else {
+            if (oldValue > 1) {
+                newVal = parseInt(oldValue) - 1;
+            } 
+            else {
+                newVal = 1;
+            }
+        }
+        btn.closest('.number-spinner').find('input').val(newVal);
+    });
+</script>
 
 </body>
 </html>     

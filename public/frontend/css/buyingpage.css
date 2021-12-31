@@ -260,7 +260,6 @@ hr {
     display: flex;
     max-height: 350px;
     width: 100%;
-    background-color: white;
     border-radius: 30px;
     justify-content: center;
 }
@@ -282,6 +281,7 @@ hr {
 }
 
 .name-product {
+    margin-top: 3%;
     font-weight: bold;
     font-size: x-large;
     position: relative;
@@ -296,7 +296,7 @@ hr {
 .price-product {
     margin-bottom: 10px;
     box-sizing: border-box;
-    position: static;
+    position: relative;
     background: rgb(254, 172, 184);
     border-width: 1px;
     border-style: solid;
@@ -346,11 +346,11 @@ hr {
 }
 
 .discount-percent-product {
-    /* width: 110px; */
+    width: 100%;
     /* height: 22px; */
     float: left;
     position: relative;
-    margin-left: 15px;
+    /* margin-left: 15px; */
     background-color: rgb(242, 122, 98);
     text-align: center;
     color: white;
@@ -944,5 +944,12 @@ hr {
     .main-imgproduct{
         width: auto;
         height: 100%;
+        display: flex;
     }
+}
+
+.imgproduct {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

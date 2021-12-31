@@ -16,18 +16,19 @@ class CartController extends Controller
         return DB::select("select od.amount, pd.name, pd.image_link, pd.discount, pd.price from tborder od join product pd on od.product_id=pd.id join transaction ts on od.transaction_id=ts.id join user us on ts.user_id=us.id where us.id='$user'"); 
     }
 
-     public function buyproductnow(Request $request){
+    //  public function buyproductnow(Request $request){
 
-            $currentts = date('Y-m-d H:i:s', time());
-            $user_id = Auth::user()->id;
-            //$sql1 = DB::insert("INSERT INTO `transaction`(`status`, `user_id`, `user_name`, `user_email`, `user_phone`, `amount`, `payment`, `payment_info`, `message`, `security`, `created`)  VALUES ('1','$user_id', '', '', '', '1', '', '', '', '', '$currentts')");
-            //$sql2 = DB::insert("INSERT INTO `tborder`(`transaction_id`, `product_id`, `qty`, `amount`, `data`, `status`) VALUES ('1','$user_id','$qty','$amount','','1')");
-            //return $sql1;
+    //         $currentts = date('Y-m-d H:i:s', time());
+    //         $user_id = Auth::user()->id;
+    //         //$sql1 = DB::insert("INSERT INTO `transaction`(`status`, `user_id`, `user_name`, `user_email`, `user_phone`, `amount`, `payment`, `payment_info`, `message`, `security`, `created`)  VALUES ('1','$user_id', '', '', '', '1', '', '', '', '', '$currentts')");
+    //         //$sql2 = DB::insert("INSERT INTO `tborder`(`transaction_id`, `product_id`, `qty`, `amount`, `data`, `status`) VALUES ('1','$user_id','$qty','$amount','','1')");
+    //         //return $sql1;
         
-        return Redirect::to('/cart');
-    }
+    //     return Redirect::to('/cart');
+    // }
 
     public function addtocart(Request $request){
+        
         $quantity = $request->qty;
         $product = DB::select("select * from product where id = '$request->productid'")[0];
 
@@ -39,9 +40,14 @@ class CartController extends Controller
         $data['options']['image']= $product->image_link;
         Cart::add( $data );
 
-        //Cart::store( Auth::user()->id );
+        if (isset($_POST['addproduct'])){
+            return back();
+        }
+        else {
+            return Redirect::to('/cart')->with('message', 'success');
 
-        return Redirect::to('/cart')->with('message', 'success');
+        }
+        //Cart::store( Auth::user()->id );
     }
 
     public function deletecart($rowid){
@@ -49,19 +55,25 @@ class CartController extends Controller
         return Redirect::to('/cart');
     }
 
+    public function increasequantity($rowid){
+        $product = Cart::get($rowid);
+        $quantity = $product->qty + 1;
+        Cart::update ( $rowid, $quantity);
+        return Redirect::to('/cart');
+    }
 
+    public function decreasequantity($rowid){
+        $product = Cart::get($rowid);
+        $quantity = $product->qty - 1;
+        Cart::update ( $rowid, $quantity);
+        return Redirect::to('/cart');
+    }
 
-//     public function deletproductincart(Request $request){
-//         return DB::select("DELETE FROM `tborder` WHERE 
-// ( 
-//     select od.id
-//     from tborder od join product pd on od.product_id=pd.id 
-//     				join transaction ts on od.transaction_id=ts.id 
-//     				join user us on ts.user_id=us.id
-//     where us.id = '1' and pd.id = '1'
-// )
-// "); 
-//     }
+    public function getprice(Request $request){
+        $productid = $request->input('productid');
+        $totalprice = Cart::get($rowid)->price;
+        return $totalprice;
+    }
 
     public function index(){
         return view ('cart')

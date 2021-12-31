@@ -23,24 +23,27 @@
                         <span>Quản lý hồ sơ và bảo mật tài khoản</span>
                     </div>
                     <div class="container-user-details" style="background-color: #B4EDFF;">
-                        <form method="POST">
+                        <form method="POST" action="{{ route('changeinfo') }}">
+                            @csrf
                             <div class="row form-group">
                                 <label class="col-lg-4 col-sm-6 label-form">Tên đăng nhập:</label>
-                                <div class="col-lg-8 col-sm-6 content-form">Tendangnhap123</div>
+                                <div class="col-lg-8 col-sm-6 content-form">{{Auth::user()->name}}</div>
                             </div>
                             <div class="row form-group">
                                 <label class="col-lg-4 col-sm-6 label-form">Tên:</label>
                                 <div class="col-lg-8 col-sm-6 content-form">
-                                    <input class="text-form" type="text" value="Kang Seung Yoon">
+                                    <input class="text-form" type="text" name="accname" value="{{Auth::user()->name}}">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <label class="col-lg-4 col-sm-6 label-form">Email:</label>
-                                <div class="col-lg-8 col-sm-6 content-form">19522411@gm.uit.edu.vn</div>
+                                <div class="col-lg-8 col-sm-6 content-form">{{Auth::user()->email}}</div>
                             </div>
                             <div class="row form-group">
                                 <label class="col-lg-4 col-sm-6 label-form">Số điện thoại:</label>
-                                <div class="col-lg-8 col-sm-6 content-form">0984016356</div>
+                                <div class="col-lg-8 col-sm-6 content-form">
+                                    <input class="text-form" type="text" name="phone" value="{{Auth::user()->phone}}">
+                                </div>
                             </div>
                             <div class="row form-group">
                                 <label class="col-lg-4 col-sm-6 label-form">Giới tính:</label>
@@ -72,7 +75,7 @@
                                     <button class="btn btn-save" type="submit">Lưu</button>
                                 </div>
                                 <div class="col-md-6">
-                                    <button class="btn btn-return">Quay lại</button>
+                                    <button class="btn btn-return" type="button">Quay lại</button>
                                 </div>
                             </div>
                         </form>

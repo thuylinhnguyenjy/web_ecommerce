@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng Ký</title>
+    <title>Xác Nhận Đăng Ký</title>
     <script src="https://kit.fontawesome.com/c44ecc908b.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -31,16 +31,20 @@
     <main>
         <div class="container" style="background-color: #B4EDFF;">
             <div class="row">
-                <form class="col-md-6" method="POST" action="{{ route('showpageconfirmregis') }}">
-                    @csrf
+                <form class="col-md-6" method="POST">
                     <div class="form-text-group">
                         <div class="form-group">
-                            <input class="form-control" id="email" name="email" type="email" placeholder="Nhập tài khoản/Email">
+                            <input class="form-control" id="password" name="password" type="password" placeholder="Mật khẩu">
+                            <i class="far fa-eye-slash togglePassword" aria-hidden="true"></i>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="confirm-password" name="password" type="password" placeholder="Xác nhận mật khẩu">
+                            <i class="far fa-eye-slash confirm_togglePassword" aria-hidden="true"></i>
                         </div>
                     </div>
                     <div class="form-ques register">
-                        Đã có tài khoản ? 
-                        <a class="text-dangky" href=" {{ route('showpagelogin') }} "><strong>Đăng nhập</strong></a>
+                        Đâ có tài khoản ? 
+                        <a class="text-dangky"><strong>Đăng nhập</strong></a>
                     </div>
                     <div class="form-btn-group">
                         <div class="button-container">
@@ -61,7 +65,9 @@
             </div>
             
         </div>
-    </main>    
+    </main>
+    
+    <script src="public/frontend/js/login_register.js"></script>
 
 </body>
 </html>

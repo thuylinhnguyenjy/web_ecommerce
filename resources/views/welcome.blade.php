@@ -9,11 +9,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link  href="{{asset('public/frontend/css/homepage.css')}}" rel="stylesheet" type="text/css"/>
     <link  href="{{asset('public/frontend/css/mainfont.css')}}" rel="stylesheet" type="text/css"/>
     <link  href="{{asset('public/frontend/css/header.css')}}" rel="stylesheet" type="text/css"/>
-
+    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/hoso.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/frame_user_info.css')}}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+    
 </head>
 
 <body>
@@ -56,26 +60,30 @@
                 </div>
             @else 
                 <a type="button" id="btnlogin" href="{{ route('showpagelogin') }}">Login</a>
-                <a type="button" id="btnregister">Register</a>
+                <a type="button" id="btnregister" href="{{ route('showpageregister') }}">Register</a>
             @endif
             </div>
 
         </div>
-
+    
         <div class="row pt-4 pb-3" style="position: relative">
+               
             <div class="searchbar logo col-md-2 col-sm-2">
                 <img src="{{('public/frontend/img/logo.png')}}">
             </div>
 
-            <div class="searchbar search col-md-8 col-sm-8 col-12"><div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="button">
-                            <i class="fas fa-search" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                </div>                           
-            </div>
+                <div class="searchbar search col-md-8 col-sm-8 col-12">
+                    <form method="GET" action="{{route('showpagesearch')}}" style="width: 100%">    
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" name="keyword">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div> 
+                    </form>                          
+                </div>
 
             <div class="searchbar cart col-md-2 col-sm-2">
                  <a class="btn" type="button" href="{{ route('showpagecart') }}">
@@ -93,33 +101,39 @@
 @yield('content')
 </main>
 
-<!-- <div class="footer container">
-    <div class="container p-0 pt-4 my-4 socialfooter" style="background-color: #f2f2f2; position: relative;">
+<div class="footer container">
+    <div class="container p-0 my-4 socialfooter" style="background-color: #f2f2f2; position: relative;">
         <div style="display: flex; justify-content: center; width: 100%;">
             <div class="row pt-5 gx-0" style="width: 100%; justify-content: space-evenly; margin-left: auto; margin-right: auto;">
-                
-                    <div class="col-md-1">
+                <div class="footercol col-lg-5 col-md-6 order-lg-1 order-md-2">
+                    <div class="row">
+                    <div class="col-lg-4 col-md-4">
                         <a class="btn" href="">Product</a>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-4 col-md-4">
                         <a class="btn" href="">Features</a>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-4 col-md-4">
                         <a class="btn" href="">Resources</a>
                     </div>
-                    <div class="col-md-2 d-flex justify-content-center">
-                        <b style="margin-top: 8px;">TRADE</b>
                     </div>
-                    <div class="col-md-1">             
+                </div>
+                <div class="footercol col-lg-2 col-md-12 order-lg-2 order-md-1 d-flex justify-content-center">
+                    <b style="margin-top: 8px;">TRADE</b>
+                </div>
+                <div class="footercol col-lg-5 col-md-6 order-lg-3 order-md-3">
+                    <div class="row">
+                    <div class="col-lg-4 col-md-4">             
                         <a class="btn" href="">About</a>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-lg-4 col-md-4">
                         <a class="btn" href="">Blog</a>  
                     </div>
-                     <div class="col-md-1">
+                     <div class="col-lg-4 col-md-4">
                         <a class="btn" href="">Support</a> 
                     </div>
-                                         
+                    </div>
+                </div>                        
             </div>
         </div>
 
@@ -134,7 +148,7 @@
             <button class="btn"><i class="fab fa-twitter" style="font-size: 40px;" aria-hidden="true"></i></button>
         </div>
 
-        <div class=" pt-5 pb-3 d-flex justify-content-center"> 
+        <div class=" pt-1 pb-3 d-flex justify-content-center"> 
             <span>
                 ©2021 
                 <a class="btn" href="" style="margin-top: -5px;">Privacy - Terms </a> 
@@ -186,7 +200,12 @@
         </div>
 
     </div>
-</div> -->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-migrate-3.3.2.min.js" integrity="sha256-Ap4KLoCf1rXb52q+i3p0k2vjBsmownyBTE1EqlRiMwA=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="public/frontend/js/slick.js">  </script>
 
 </body>
 
