@@ -8,7 +8,9 @@ use Auth;
 class ProductController extends Controller
 {
     public function gotoproduct($id){
-        return DB::select("select pd.*, ct.name as catalog_name from product pd join catalog ct on pd.catalog_id=ct.id where pd.id = '$id' ")[0];
+        return DB::select("select pd.*, ct.category_name, br.brand_name 
+        from tbl_product pd join tbl_category_product ct on pd.category_id=ct.category_id join tbl_brand br on br.brand_id = pd.brand_id
+        where pd.product_id = '$id' ")[0];
     }
 
     public function index($id){

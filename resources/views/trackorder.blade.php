@@ -12,16 +12,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="asset/css/frame_user_info.css"/>
     <link rel="stylesheet" type="text/css" href="asset/css/tracking.css"/>
-    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/tracking.css')}}"/>
-    <!-- number spinner -->
- 
+    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/tracking.css')}}"/> 
 </head>
 
 <body>
     @extends('welcome')
     @section('content')
 
-    @foreach ($transinfo as $product)
         <div class="container product mini-main">
             <div class="container row box">
                 <p class="col-md-9 text-donhang inline-block">Đơn hàng sẽ giao trước ngày 01-01-2021. Vui lòng thanh toán khi nhận hàng.</p>
@@ -35,7 +32,8 @@
             </div>
         </div>
 
-        
+    @foreach ($orderinfo as $product)
+
         <div class="container product">
             <div class="container row box">
                 <div class="row" style="margin-bottom: 1%;">
@@ -45,13 +43,13 @@
                 <div class="row">
                     <div class="col-lg-5 container imgproduct">
                         <div class="main-imgproduct">
-                            <img src="asset/img/product.png">
+                            <img src="{{$product->product_image}}">
                         </div>
                     </div>
 
                     <div class="col-lg-7 container detailproduct">
                         <div class="name-product">
-                            {{$product->id}}
+                           
                         </div>
 
                         <div class="row info-product">
@@ -80,11 +78,10 @@
                         <div class="row price-product">
                             <div class="row">
                                 <div class="col-sm-7 discount-price-product">  
-                                    <span>đ 2.000.000 </span>
+                                    <span>đ {{$product->product_price}} </span>
                                 </div>
                                 <div class="col-sm-5 original-price-product">
-                                    đ
-                                    <span>4.000.000 </span>
+                                    <span>đ {{$product->product_price}} </span>
                                 </div>
                             </div>
                             <div class="row">
@@ -104,7 +101,7 @@
                             <div class="row count-quantity-product">                    
                                 <div class="container">
                                     <span>Số lượng:</span>
-                                    <span>1</span>
+                                    <span> {{$product->product_sales_quantity}} </span>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +109,8 @@
             </div>    
             </div>
         </div>
-
+    @endforeach
+ 
         <div class="container product tracking">
             <div class="container row box">
                 <div class="row container trackinfo">
@@ -124,7 +122,7 @@
                     </div>
                     <div class="the-line inline-block"></div>
                     <div class="col-sm-8 right">
-                        <div class="trackmove">
+                        <!-- <div class="trackmove">
                                 <p class="text-annouce">09:12 20-11-2021</p>
                                 <p class="text-annouce">Đơn hàng đang được vận chuyển từ Trung Quốc về Việt Nam</p>
                         </div>
@@ -145,7 +143,7 @@
                                 <p class="text-annouce">[Quốc Tế] Lấy hàng thành công</p>
                                 <p class="text-annouce">12:48 15-11-2021</p>
                                 <p class="text-annouce">[Quốc Tế] Người gửi đang chuẩn bị hàng</p>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -161,7 +159,7 @@
                         <div class="grouptext">
                             <div class="text-sum-1">
                                 <p class="content-text-sum">Tổng tiền hàng:</p>
-                                <span class="cost-sum">₫0</span>
+                                <span class="cost-sum">{{Cart::subtotal()}}</span>
                             </div>
                             <div class="text-sum-1">
                                 <p class="content-text-sum">Phí vận chuyển:</p>
@@ -181,9 +179,10 @@
             </div>
         </div>
     
-    @endforeach
+   
     
     @endsection
 
 </body>
+
 </html>     

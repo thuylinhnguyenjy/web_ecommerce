@@ -62,22 +62,18 @@
     </div>
 
     <div class="boxflashsale container my-4">
-
         <div class="flashsalecontent">
-           
                 <div class="row gx-1 rowfls">
-                    
                     <div>
                         <a class="btn btn-fls-viewmore pb-2" href="">Xem thêm &gt; </a>
                     </div>
-
                     <div class="gridspfls">
                         @foreach ($products_flashsale as $product)
-                        <a class="col-lg fls" href="{{route ('showpageproduct', $product->id) }}">
+                        <a class="col-lg fls" href="{{route ('showpageproduct', $product->product_id) }}">
                             <div class="card rectcard">
-                                <img class="card-img-top" src="{{asset('public/frontend/img/product/'.$product->image_link)}}">      
-                                <span>{{$product->name}}</span>
-                                <div>{{$product->price}} đ</div>
+                                <img class="card-img-top" src="{{$product->product_image}}">      
+                                <span>{{$product->product_name}}</span>
+                                <div>{{$product->product_price}} đ</div>
                             </div> 
                         </a>
                         @endforeach
@@ -102,12 +98,12 @@
                     <div style="margin-left: auto;">
                         <div class="multiple-items" style="text-align: center;">
                                 
-                            @foreach ($catalogs as $catalog)
+                            @foreach ($categories as $category)
                             <div>                
-                                <a href="{{route ('showpageproduct', $product->id) }}">
+                                <a href="{{route ('showpagecategory', $category->category_id) }}">
                                     <div class="card category">
-                                        <img class="circleimg" src="{{asset('public/frontend/img/catalog/'.$catalog->image_link)}}">      
-                                        <span>{{$catalog->name}}</span>
+                                        <img class="circleimg" src="{{asset('public/frontend/img/catalog/'.$category->category_image)}}">
+                                        <span>{{$category->category_name}}</span>
                                     </div> 
                                 </a>
                             </div>
@@ -131,11 +127,11 @@
                 <div class="gridsp row gx-1">
 
                     @foreach ($products as $product)
-                    <a class="col-md sp" href="{{route ('showpageproduct', $product->id) }}">
+                    <a class="col-md sp" href="{{route ('showpageproduct', $product->product_id) }}">
                         <div class="card rectcard">
-                            <img class="card-img-top" src="{{asset('public/frontend/img/product/'.$product->image_link)}}">      
-                            <span>{{$product->name}}</span>
-                            <div>{{$product->price}} đ</div>
+                            <img class="card-img-top" src="{{$product->product_image}}">      
+                            <span>{{$product->product_name}}</span>
+                            <div>{{$product->product_price}} đ</div>
                         </div> 
                     </a>
                     @endforeach

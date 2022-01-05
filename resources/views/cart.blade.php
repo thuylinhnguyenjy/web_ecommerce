@@ -50,7 +50,7 @@
                 <div class="d-flex align-items-center">
                 <div class="col-lg-4 container imgproduct">
                     <div class="main-imgproduct">
-                        <img src="{{asset('public/frontend/img/product/'.$product->options->image)}}">
+                        <img src="{{$product->options->image}}">
                     </div>
                 </div>
 
@@ -89,7 +89,7 @@
                                 <span>{{'đ '.number_format ($product->price)}} </span>
                             </div>
                             <div class="col-sm-5 original-price-product">
-                                <span>đ {{$product->price}} </span>
+                                <span>đ{{$product->price}} </span>
                             </div>
                         </div>
                         <div class="row">
@@ -124,7 +124,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-5">
-                                    <span class="num-available-product">10</span>
+                                    <span class="num-available-product">{{$product->options->status}}</span>
                                     sản phẩm có sẵn
                                 </div>
                             </div>
@@ -159,7 +159,7 @@
                     </div>
                     <div class="col-lg-4 billprice">
                         <span>Tổng thanh toán: </span>
-                        <span class="totalbill">{{'đ '.(Cart::subtotal()) }}</span>
+                        <span class="totalbill">{{'đ'.(Cart::subtotal()) }}</span>
                     </div>
                     <div class="col-lg-5">
                         <div class="row button-buying-product">

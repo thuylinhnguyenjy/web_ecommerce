@@ -16,8 +16,6 @@
     <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/frame_user_info.css')}}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   
-    
 </head>
 
 <body>
@@ -69,7 +67,7 @@
         <div class="row pt-4 pb-3" style="position: relative">
                
             <div class="searchbar logo col-md-2 col-sm-2">
-                <img src="{{('public/frontend/img/logo.png')}}">
+                <a href="{{route('showpagehome')}}"><img src="{{('public/frontend/img/logo.png')}}"></a>
             </div>
 
                 <div class="searchbar search col-md-8 col-sm-8 col-12">
@@ -101,7 +99,7 @@
 @yield('content')
 </main>
 
-<div class="footer container">
+<div class="footer">
     <div class="container p-0 my-4 socialfooter" style="background-color: #f2f2f2; position: relative;">
         <div style="display: flex; justify-content: center; width: 100%;">
             <div class="row pt-5 gx-0" style="width: 100%; justify-content: space-evenly; margin-left: auto; margin-right: auto;">

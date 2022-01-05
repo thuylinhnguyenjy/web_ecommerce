@@ -9,6 +9,8 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,10 +34,16 @@ Route::post('/login', [AuthController::class,'checklogin'])->name('checklogin');
 Route::get('/logout', [AuthController::class,'logout'])->name('logout');
 
 Route::get('/register', [AuthController::class, 'showpageregister'])->name('showpageregister');
+Route::post('/register', [AuthController::class,'checkregister'])->name('checkregister');
 Route::post('/register-confirm', [AuthController::class, 'showpageconfirmregis'])->name('showpageconfirmregis');
 
 //search
 Route::get('/search', [SearchController::class,'index'])->name('showpagesearch');
+
+//category
+Route::get('/category-product/{id}', [CategoryController::class,'index'], 
+function($id){
+    return view('category');})->name('showpagecategory');
 
 //cart
 Route::get('/cart', [CartController::class,'index'])->name('showpagecart');
@@ -78,8 +86,9 @@ Route::get('/trackorder', [OrderController::class,'index'])->name('showpagetrack
 //payment
 Route::get('/checkout', [CheckoutController::class,'showpagecheckout'])->name('showpagecheckout');
 Route::post('/checkout', [CheckoutController::class,'showpagecheckout'])->name('showpagecheckout');
+Route::get('/checkout/voucher', [VoucherController::class,'index'])->name('showmodalvoucher');
 
-Route::get('/payment', [OrderController::class,'createtrans'])->name('createtrans');
-Route::post('/payment', [OrderController::class,'createtrans'])->name('createtrans');
+Route::get('/payment', [OrderController::class,'createorder'])->name('createorder');
+Route::post('/payment', [OrderController::class,'createorder'])->name('createorder');
 
 

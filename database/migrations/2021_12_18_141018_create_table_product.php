@@ -13,18 +13,20 @@ class CreateTableProduct extends Migration
      */
     public function up()
     {
-        Schema::create('product', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('catalog_id');
-            $table->string('name', 100);
-            $table->float('price');
-            $table->string('context', 50);
-            $table->float('discount');
-            $table->string('image_link', 100);
-            $table->string('image_list', 100);
-            $table->integer('view');
-            $table->timestamp('created');
-        });
+        Schema::create('tbl_product', function (Blueprint $table) {
+            $table->increments('product_id');
+            $table->string('product_name', 255);
+            $table->string('product_slug', 255);
+            $table->integer('category_id');
+            $table->integer('brand_id');
+            $table->string('product_desc');
+            $table->string('product_content');
+            $table->string('product_price', 255);
+            $table->string('product_image', 255);
+            $table->integer('product_status');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
+      });
     }
 
     /**

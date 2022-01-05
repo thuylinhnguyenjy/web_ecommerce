@@ -2,8 +2,8 @@ const togglePassword = document.querySelector('.togglePassword');
 const confirm_togglePassword = document.querySelector('.confirm_togglePassword');
 const password = document.querySelector('#password');
 const confirmpassword = document.querySelector('#confirm-password');
-const close = document.querySelector('.close');
-const alert = document.querySelector('.alert');
+// const close = document.querySelector('.close');
+// const alert = document.querySelector('.alert');
 
 togglePassword.addEventListener('click', function (e) {
     

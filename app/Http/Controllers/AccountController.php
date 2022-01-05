@@ -35,7 +35,7 @@ class AccountController extends Controller
 
     public function changeinfo(Request $request){
         $user = Auth::user()->id;
-        DB::update("UPDATE `user` SET `name`='$request->accname',`phone`='$request->phone' WHERE id='$user'");
+        DB::update("UPDATE `users` SET `name`='$request->accname' WHERE id='$user'");
         return Redirect::to('/account');
 
     }

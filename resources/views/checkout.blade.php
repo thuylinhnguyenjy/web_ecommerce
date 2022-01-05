@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/payment.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/voucher.css')}}"/>
 
     <!-- number spinner -->
     <script>
@@ -32,15 +33,18 @@
         });
     </script>
 
+
 </head>
 
 <body>
  @extends('welcome')
  @section('content')
 
-               
-        
-    <form method="POST" action="{{ route ('createtrans') }}" >
+    <?php 
+        $cartlist = Cart::content();
+    ?>
+                
+    <form method="POST" action="{{ route ('createorder') }}" >
         @csrf
         @foreach ($cartlist as $product)
        
@@ -53,7 +57,7 @@
                     <div class="row">
                         <div class="col-lg-5 container imgproduct">
                             <div class="main-imgproduct">
-                                <img src="{{asset('public/frontend/img/product/'.$product->options->image)}}">
+                                <img src="{{$product->options->image}}">
                             </div>
                         </div>
 
@@ -122,15 +126,18 @@
             </div>
         </div>
 
-       
         @endforeach
 
         <div class="container product voucher">
             <div class="container row box">
                  <div class="row voucherline">
                     <div class="col-md-8"><img src="{{('public/frontend/img/tag-discount.svg')}}" class="img-voucher">
-                        <span>Voucher</span></div>
-                    <div class="col-md-4"><a>Chọn hoặc nhập mã</a></div>
+                        <span>Voucher</span>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="detail-voucher"></span>
+                        <a id="choose-voucher" type="button">Chọn voucher</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -153,9 +160,8 @@
         <div class="container product paymentinfo">
             <div class="container row box">
                 <div class="row">
-                    
-                        <b class="col-md-6 text-phone inline-block">Phương thức thanh toán</b>
-                       <div class="col-md-6 paymentline"><span class="default-text"></span><span class="change-payment">THAY ĐỔI</span>
+                   <b class="col-md-6 text-phone inline-block">Phương thức thanh toán</b>
+                   <div class="col-md-6 paymentline"><span class="default-text"></span><span class="change-payment">THAY ĐỔI</span>
                </div> 
                 </div>
             </div>
@@ -170,16 +176,63 @@
                             <p class="sum-text inline-block">Tổng thanh toán</p>
                             <div class="another-cost inline-block" ><span name="amount">{{'đ '.(Cart::subtotal()) }}</span></div>
                         </div>
-                    <div class="col-md-3"><button class="btn-buy inline-block" type="submit">Đặt hàng</button></div>   
+                    <div class="col-md-3">
+                        <button class="btn-buy inline-block" type="submit">Đặt hàng</button>
+                        <button class="btn btn-buy btn-light inline-block mt-1" type="button" onclick="window.history.back()">Quay lại </button>
+                    </div>  
                 </div>
             </div>
         </div>
 
     </div>
 
-    </form>
+    </form>                            
 
-    @endsection
+<!-- The Modal -->
+<div id="voucher-modal" class="modal">
+  <!-- Modal content -->
+  <div class="content-modal">
+    <span class="close">&times;</span> 
+    <div class="container">
+        @foreach ($vouchers as $voucher)
+        <a class="container-voucher" name="container-voucher[]">
+        <div class="container" style="background-color: green">
+            <div class="voucher-detail row">    
+                <div class="col-md-3 col-sm-4 voucher-img">
+                    <img src="{{asset('public/frontend/img/voucher.png')}}" width="100%" class="col-sm-2 img-sanpham" height="47.5%">
+                </div>
+                <div class="col-md-7 col-sm-8 voucher-info">
+                    <input type="hidden" name='voucherid[]' class="voucherid" id="{{$voucher->voucher_name}}" value="{{$voucher->voucher_name}}">
+                    <h4>{{$voucher->voucher_name}}</h4>
+                    <h5>HSD: {{$voucher->voucher_date}}</h5>
+                </div>
+                <div class="col-md-2 col-sm-12 voucher-condition">
+                    <a>Điều kiện</a>
+                </div>
+            </div>
+        </div>    
+        </acontainer-voucher>
+        @endforeach
+    </div>
+  </div>
+</div>
+
+<script src="public/frontend/js/modal_voucher.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $("a[name='container-voucher[]']").click(function(){
+            var detail = $("input[name='voucherid[]']").val();
+       //     .map(function(){return $(this).val();}).get();
+           // var detail = $('.voucherid').val();
+            $('.detail-voucher').html(detail);
+            $('#voucher-modal').hide();
+        });
+    });
+</script>
+
+@endsection
 
 </body>
+
 </html>     

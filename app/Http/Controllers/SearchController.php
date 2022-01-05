@@ -8,8 +8,7 @@ use Auth;
 class SearchController extends Controller
 {
     public function showpagesearch($keyword){
-        return DB::select("select * from product where name like '%$keyword%' limit 20 ");
-        
+        return DB::select("select * from tbl_product where product_name like '%$keyword%' limit 20 "); 
     }
 
     public function index(Request $request){

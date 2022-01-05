@@ -31,20 +31,52 @@
     <main>
         <div class="container" style="background-color: #B4EDFF;">
             <div class="row">
-                <form class="col-md-6" method="POST" action="{{ route('showpageconfirmregis') }}">
+                <form class="col-md-6" method="POST" action="{{ route('checkregister') }}">
                     @csrf
                     <div class="form-text-group">
+                        <div class="form-group">
+                            <input class="form-control" id="name" name="name" type="text" placeholder="Nhập tên">
+                        </div>
                         <div class="form-group">
                             <input class="form-control" id="email" name="email" type="email" placeholder="Nhập tài khoản/Email">
                         </div>
                     </div>
+                    <div class="form-group">
+                            <input class="form-control" id="password" name="password" type="password" placeholder="Mật khẩu">
+                            <i class="far fa-eye-slash togglePassword" aria-hidden="true"></i>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="confirm-password" name="password_confirmation" type="password" placeholder="Xác nhận mật khẩu">
+                            <i class="far fa-eye-slash confirm_togglePassword" aria-hidden="true"></i>
+                        </div>
+
+                    
+                    @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-block">
+                        <span> {{ $message }} </span>
+                        <a type="button" class="close" data-dismiss="alert">x</a>
+                    </div>
+                    @endif
+                
+                    @if (count($errors) > 0)
+                    <div class="alert alert-danger alert-block">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                            <li> {{ $error }} </li>
+                            @endforeach
+                        </ul>
+                        <a type="button" class="close" data-dismiss="alert">x</a>
+                    </div>
+                    @endif
+
+                    
                     <div class="form-ques register">
                         Đã có tài khoản ? 
-                        <a class="text-dangky" href=" {{ route('showpagelogin') }} "><strong>Đăng nhập</strong></a>
+                        <a class="text-dangky" type="button" href=" {{ route('showpagelogin') }} "><strong>Đăng nhập</strong></a>
                     </div>
                     <div class="form-btn-group">
                         <div class="button-container">
-                            <button class="form-btn">Tiếp theo</button>
+                            <button class="form-btn" type="submit">Tiếp theo</button>
                             <p class="text">Hoặc đăng ký với
                             </p>
                             <p>
@@ -63,5 +95,7 @@
         </div>
     </main>    
 
+    <script src="public/frontend/js/login_register.js"></script>
+    
 </body>
 </html>

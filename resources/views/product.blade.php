@@ -31,51 +31,24 @@
     <div class="container product my-4">
         
         <div class="container titlepart">
-            {{$productinfo->catalog_name}}
+            {{$productinfo->category_name}}
         </div>
         
         <div class="boxproduct">
             <div class="row">
             <div class="col-lg-5 col-md-12 container imgproduct">
                 <div class="main-imgproduct">
-                    <img src="{{asset('public/frontend/img/product/'.$productinfo->image_link)}}">
+                    <img src="{{$productinfo->product_image}}">
                 </div>
-
-                <!-- <div class="row">
-                    <div id="previewlist-imgproduct" class="carousel slide pointer-event" data-bs-interval="false">
-                        <div class="carousel-inner">
-                            <div class="carousel-item">
-                                <div class="row ">
-                                    <div class="col-md-3 preview-imgproduct-item">
-                                        <img src="http://localhost:8080/testinga/public/frontend/img/product/shoes_bitishunter_armygreen_DSMH05100REU_reu_1.jpg" width="100%">
-                                    </div>
-                                </div>
-                            </div>        
-                            <div class="carousel-item active">
-                                <div class="row ">
-                                    <div class="col-md-3 preview-imgproduct-item">
-                                        <img src="http://localhost:8080/testinga/public/frontend/img/product/shoes_bitishunter_armygreen_DSMH05100REU_reu_1.jpg" width="100%">
-                                    </div>
-                                </div>
-                            </div>        
-                        </div>
-                        
-                        <button class="carousel-control-prev" type="button" data-bs-target="#previewlist-imgproduct" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon blue"></span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#previewlist-imgproduct" data-bs-slide="next">
-                            <span class="carousel-control-next-icon blue"></span>
-                        </button>
-                    </div> 
-                </div> -->
 
             </div>
 
-            <div class="col-lg-7 col-md-12 container detailproduct">
-                <form method="POST" action="{{route('addtocart')}}">
+            <div class="col-lg-7 col-md-12">
+                <div class="container detailproduct">
+                <form method="POST" action=" {{route('addtocart')}}">
                     @csrf 
                    
-                    <div class="name-product"> {{$productinfo->name}} </div>
+                    <div class="name-product"> {{$productinfo->product_name}} </div>
 
                     <div class="row info-product">
                         <div class="col-md-5 info-rating-product">
@@ -103,17 +76,12 @@
                     <div class="row price-product">
                         <div class="row">
                             <div class="col-sm-7 discount-price-product">  
-                                <span>đ {{$productinfo->price}} </span>
+                                <span>đ {{$productinfo->product_price}}</span>
                             </div>
                             <div class="col-sm-5 original-price-product">
-                                <span>đ {{$productinfo->price}} </span>
+                                <div style="padding-top: 10px">đ {{$productinfo->product_price}} </div>
                             </div>
-                        </div>
-                        
-                            <div class="discount-percent-product">
-                                <span> Giảm {{$productinfo->discount}} % </span>
-                            </div>
-                    
+                        </div>                    
                     </div>
                     
                     <div class="row delivery-product">
@@ -129,30 +97,33 @@
                                 </div>
                                 <div class="col-md-4 col-sm-6">
                                     <div class="input-group number-spinner">
+                                        
                                         <span class="input-group-btn">
                                             <button type="button" class="btn" data-dir="dwn"><span class="fa fa-minus" style="font-size: 10px; position: absolute;" aria-hidden="true"></span></button>
                                         </span>
-                                        <input name="qty" type="text" class="form-control text-center" value="1" readonly="readonly" style="background-color: rgb(254, 172, 184)">
+                                        <input name="qty" type="text" class="form-control text-center quantity" value="1" readonly="readonly" style="background-color: rgb(254, 172, 184)">
                                         <span class="input-group-btn">
                                             <button type="button" class="btn" data-dir="up"><span class="fa fa-plus" style="font-size: 10px; position: absolute;" aria-hidden="true"></span></button>
                                         </span>
+
                                     </div>
                                 </div>
                                 <div class="col-md-5">
-                                    <span class="num-available-product">10</span>
+                                    <span class="num-available-product">{{$productinfo->product_status}}</span>
                                     sản phẩm có sẵn
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <input type="hidden" name="productid" value="{{$productinfo->id}}">
+                    <input type="hidden" name="productid" value="{{$productinfo->product_id}}">
 
                     <div class="row button-buying-product">
                         <button type="submit" name="addproduct" class="col-md-6 col-sm-12 btn-addtocart">Thêm vào giỏ hàng</button>
                         <button type="submit" name="buynow" class="col-md-6 col-sm-12 btn-buynow">Mua ngay</button>
                     </div>    
                 </form>
+                </div>
             </div>
         </div></div>
     </div>
@@ -168,7 +139,7 @@
                 
                     <div class="row name-status-shopowner">
                         <div class="col-md-6 name-shopowner ">
-                            UIT Store
+                            {{$productinfo->brand_name}}
                         </div>
                         <div class="col-md-6 status-shopowner">
                             Online
@@ -177,10 +148,10 @@
                 
                     <div class="row view-chatwith-shopowner d-flex" style="padding-inline: 5px;justify-content: space-around;">
                         <div class="col-lg-6">
-                    <button class=" btn btn-view-shopowner"> Xem shop </button>       
+                    <button class=" btn-view-shopowner"> Xem shop </button>       
                         </div>
                         <div class="col-lg-6">
-                            <button class=" btn btn-chatwith-shopowner">Chat với Shop</button>                        
+                            <button class=" btn-chatwith-shopowner">Chat với Shop</button>                        
                         </div>
                     </div>
             </div>
@@ -202,7 +173,7 @@
                 Chi tiết sản phẩm
             </div>
             <div class="details-text">
-                {{$productinfo->context}}
+                {{$productinfo->product_desc}}
             </div>
         </div>
         <div class="describe">
@@ -210,13 +181,13 @@
                 Mô tả sản phẩm
             </div>
             <div class="describe-text">
-              {{$productinfo->context}}
+              {{$productinfo->product_content}}
             </div>
         </div>
         
     </div>
 
-    <div class="container product reviews my-4">
+    <!-- <div class="container product reviews my-4">
         <div class="titlepart">
             Đánh giá sản phẩm
         </div>
@@ -255,21 +226,18 @@
             </div>
             
         </div>
-    </div>
-
-@endsection
-
-</body>
+    </div> -->
 
 <script>
 $(document).on('click', '.number-spinner button', function () {    
         var btn = $(this),
         oldValue = btn.closest('.number-spinner').find('input').val().trim(),
         newVal = 0;
-            
+        max_qty = {{$productinfo->product_status}};
+
         if (btn.attr('data-dir') == 'up') {
-             if (oldValue>=10) {
-                newVal = 10;
+             if (oldValue>=max_qty) {
+                newVal = max_qty;
             }
             else {
                 newVal = parseInt(oldValue) + 1;
@@ -286,4 +254,10 @@ $(document).on('click', '.number-spinner button', function () {
         btn.closest('.number-spinner').find('input').val(newVal);
     });
 </script>
+
+@endsection
+
+</body>
+
+
 </html>
