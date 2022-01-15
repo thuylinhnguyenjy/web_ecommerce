@@ -42,32 +42,22 @@
                             <div class="row form-group">
                                 <label class="col-lg-4 col-sm-6 label-form">Số điện thoại:</label>
                                 <div class="col-lg-8 col-sm-6 content-form">
-                                    <input class="text-form" type="text" name="phone" value="{{Auth::user()->phone}}">
+                                    <input class="text-form" type="text" name="sodienthoai" value="{{Auth::user()->sodienthoai}}">
                                 </div>
                             </div>
-                            <div class="row form-group">
-                                <label class="col-lg-4 col-sm-6 label-form">Giới tính:</label>
-                                <div class="col-lg-8 col-sm-6 content-form radio-form">
-                                    <div class="radio-group">
-                                        <input type="radio" name="sex" id="Nam">
-                                        <label for="Nam">Nam</label>
-                                    </div>
-                                    <div class="radio-group">
-                                        <input type="radio" name="sex" id="Nu">
-                                        <label for="Nu">Nữ</label>
-                                    </div>
-                                    <div class="radio-group">
-                                        <input type="radio" name="sex" id="Khac">
-                                        <label for="Khac">Khác</label>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <div class="row form-group">
                                 <label class="col-lg-4 col-sm-6 label-form">Ngày sinh:</label>
                                 <div class="col-lg-8 col-sm-6 content-form group-trippletext">
-                                    <input type="number" class="tripletext-form">
-                                    <input type="number" class="tripletext-form">
-                                    <input type="number" class="tripletext-form">
+                                    <input type="date" name="ngaysinh" class="tripletext-form" value="{{Auth::user()->ngaysinh}}">
+                                    
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-lg-4 col-sm-6 label-form">Địa chỉ:</label>
+                                <div class="col-lg-8 col-sm-6 content-form group-trippletext">
+                                    <input type="text" name="diachi" class="tripletext-form" value="{{Auth::user()->diachi}}">
+                                    
                                 </div>
                             </div>
                             <div class="row btn-form">
@@ -75,12 +65,18 @@
                                     <button class="btn btn-save" type="submit">Lưu</button>
                                 </div>
                                 <div class="col-md-6">
-                                    <button class="btn btn-return" type="button">Quay lại</button>
+                                    <button class="btn btn-return" type="button" onclick="location.href='{{route('showpagehome')}}'">Quay lại</button>
                                 </div>
                             </div>
                         </form>
                     </div>
+
+                    
+
+
                 </div>
+
+
     @endsection
 </body>
 </html>

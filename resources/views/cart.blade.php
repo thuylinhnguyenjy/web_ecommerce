@@ -50,7 +50,7 @@
                 <div class="d-flex align-items-center">
                 <div class="col-lg-4 container imgproduct">
                     <div class="main-imgproduct">
-                        <img src="{{$product->options->image}}">
+                        <img src="{{'public/frontend/img/product/'.$product->options->image}}">
                     </div>
                 </div>
 
@@ -164,7 +164,7 @@
                     <div class="col-lg-5">
                         <div class="row button-buying-product">
                             <button class="col-md-6 col-sm-12 btn-return" type="button" onclick="window.history.back()">Quay lại </button>
-                            <button class="col-md-6 col-sm-12 btn-buynow" type="submit" >Thanh toán</button>
+                            <button class="col-md-6 col-sm-12 btn-buynow" type="submit" >Mua hàng</button>
                        
                     </div>
                 </div>

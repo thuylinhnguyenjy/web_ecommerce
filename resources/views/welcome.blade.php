@@ -14,6 +14,8 @@
     <link  href="{{asset('public/frontend/css/header.css')}}" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/hoso.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/frame_user_info.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/css/total_cart.css')}}"/>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css" integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -67,7 +69,7 @@
         <div class="row pt-4 pb-3" style="position: relative">
                
             <div class="searchbar logo col-md-2 col-sm-2">
-                <a href="{{route('showpagehome')}}"><img src="{{('public/frontend/img/logo.png')}}"></a>
+                <a href="{{route('showpagehome')}}"><img src="https://reviewviet.vn/upload/K8S4jmaQtrVMBp0lwi7ZO5GQpsnGsw8VIWYcZ5S6.png"></a>
             </div>
 
                 <div class="searchbar search col-md-8 col-sm-8 col-12">
@@ -199,6 +201,7 @@
 
     </div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-migrate-3.3.2.min.js" integrity="sha256-Ap4KLoCf1rXb52q+i3p0k2vjBsmownyBTE1EqlRiMwA=" crossorigin="anonymous"></script>

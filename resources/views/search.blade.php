@@ -64,7 +64,7 @@
                             @foreach ($products as $product)
                             <a class="col-md sp" href="{{route ('showpageproduct', $product->product_id) }}">
                                 <div class="card rectcard">
-                                    <img class="card-img-top" src="{{$product->product_image}}">      
+                                    <img class="card-img-top" src="{{asset('public/frontend/img/product/'.$product->product_image)}}">      
                                     <span>{{$product->product_name}}</span>
                                     <div>{{$product->product_price}} đ</div>
                                 </div> 

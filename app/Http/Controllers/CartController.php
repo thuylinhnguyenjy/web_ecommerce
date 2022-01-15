@@ -28,7 +28,7 @@ class CartController extends Controller
             $data['price'] = $product->product_price;
             $data['weight'] = $product->product_price;
             $data['options']['image']= $product->product_image;
-            $data['options']['status']= $product->product_status;
+            $data['options']['status']= $product->product_quantily;
             Cart::add( $data );
 
             if (isset($_POST['addproduct'])){

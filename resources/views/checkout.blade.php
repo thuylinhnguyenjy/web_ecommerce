@@ -57,7 +57,7 @@
                     <div class="row">
                         <div class="col-lg-5 container imgproduct">
                             <div class="main-imgproduct">
-                                <img src="{{$product->options->image}}">
+                                <img src="{{'public/frontend/img/product/'.$product->options->image}}">
                             </div>
                         </div>
 

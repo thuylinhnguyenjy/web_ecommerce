@@ -38,7 +38,7 @@
             <div class="row">
             <div class="col-lg-5 col-md-12 container imgproduct">
                 <div class="main-imgproduct">
-                    <img src="{{$productinfo->product_image}}">
+                    <img src="{{asset('public/frontend/img/product/'.$productinfo->product_image)}}">
                 </div>
 
             </div>
@@ -109,7 +109,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-5">
-                                    <span class="num-available-product">{{$productinfo->product_status}}</span>
+                                    <span class="num-available-product">{{$productinfo->product_quantily}}</span>
                                     sản phẩm có sẵn
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
         <div class="row d-flex" style="align-items: center;">
             <div class="col-sm-3" style=" position: relative; display: flex; justify-content: center; ">
                 <div class="avatar-shopowner">
-                    <img src="{{asset('public/frontend/img/logo.png')}}" width="100%">
+                    <img src="https://yt3.ggpht.com/UNPgHvjIz7QFucNCN-51aktIaYN553Way1ZYPMgHetBN8K4eBzXv6f7wpFy3j6jxCo6P2xoIfw=s900-c-k-c0x00ffffff-no-rj" width="100%">
                 </div>
             </div>
             <div class="col-md-6 content-shop border-right">
@@ -233,7 +233,7 @@ $(document).on('click', '.number-spinner button', function () {
         var btn = $(this),
         oldValue = btn.closest('.number-spinner').find('input').val().trim(),
         newVal = 0;
-        max_qty = {{$productinfo->product_status}};
+        max_qty = {{$productinfo->product_quantily}};
 
         if (btn.attr('data-dir') == 'up') {
              if (oldValue>=max_qty) {

@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-2">
-                    <img src="{{('public/frontend/img/logo.png')}}" width="50px">
+                    <img src="https://reviewviet.vn/upload/K8S4jmaQtrVMBp0lwi7ZO5GQpsnGsw8VIWYcZ5S6.png" width="50px">
                 </div>
                 <div class="col-10">
                     <a>Need helps?</a>

@@ -181,7 +181,7 @@
     border-radius: 1vh;
     color: #FFFFFF;
     width: 100%;
-    height: 100%;
+    height: 80%;
 }
 /*CSS button lien he shop*/
 .btn-lienhe{
@@ -195,7 +195,7 @@
     /* font-weight: normal; */
     font-size: 18px;
     width: 100%;
-    height: 100%;
+    height: 80%;
     margin-bottom: 5px;
 }
 /*CSS button chi tiet*/
@@ -210,7 +210,7 @@
     /* font-weight: normal; */
     /* font-size: 3.3vh; */
     width: 100%;
-    height: 100%;
+    height: 80%;
 }
 /* rÃƒÂª vÃƒÂ o nÃƒÂºt xuÃ¡ÂºÂ¥t hiÃ¡Â»â€¡n con trÃ¡Â»Â */
 button:hover{

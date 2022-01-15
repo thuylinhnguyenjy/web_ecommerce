@@ -18,11 +18,11 @@
 <body>
     @extends('welcome')
     @section('content')
-
+        @foreach ($orderinfo as $order)
         <div class="container product mini-main">
             <div class="container row box">
                 <p class="col-md-9 text-donhang inline-block">Đơn hàng sẽ giao trước ngày 01-01-2021. Vui lòng thanh toán khi nhận hàng.</p>
-                <button class="col-md-3 btn-received inline-block">Đã nhận hàng</button>
+                <button class="col-md-3 btn-received inline-block">{{$order->trangthaidonhang}}</button>
             </div>
         </div>
 
@@ -32,7 +32,6 @@
             </div>
         </div>
 
-    @foreach ($orderinfo as $product)
 
         <div class="container product">
             <div class="container row box">
@@ -43,7 +42,7 @@
                 <div class="row">
                     <div class="col-lg-5 container imgproduct">
                         <div class="main-imgproduct">
-                            <img src="{{$product->product_image}}">
+                            <img src="{{asset('public/frontend/img/product/'.$order->hinhanh)}}">
                         </div>
                     </div>
 
@@ -78,10 +77,10 @@
                         <div class="row price-product">
                             <div class="row">
                                 <div class="col-sm-7 discount-price-product">  
-                                    <span>đ {{$product->product_price}} </span>
+                                    <span>đ {{$order->gia}} </span>
                                 </div>
                                 <div class="col-sm-5 original-price-product">
-                                    <span>đ {{$product->product_price}} </span>
+                                    <span>đ {{$order->gia}} </span>
                                 </div>
                             </div>
                             <div class="row">
@@ -101,7 +100,7 @@
                             <div class="row count-quantity-product">                    
                                 <div class="container">
                                     <span>Số lượng:</span>
-                                    <span> {{$product->product_sales_quantity}} </span>
+                                    <span> {{$order->soluong}} </span>
                                 </div>
                             </div>
                         </div>
@@ -117,8 +116,8 @@
                     <div class="col-sm-4 left inline-block">
                         <i class="fas fa-map-marker-alt inline-block" aria-hidden="true"></i>
                         <h5 class="text-address inline-block" style="font-weight: bold">Địa chỉ mua hàng</h5>
-                        <p class="text-phone">Số điện thoại <span>(+84)123456789</span></p>
-                        <p class="text-address-1">Địa chỉ</p>
+                        <p class="text-phone">Số điện thoại <span>{{$order->sodienthoai}}</span></p>
+                        <p class="text-address-1">{{$order->diachi}}</p>
                     </div>
                     <div class="the-line inline-block"></div>
                     <div class="col-sm-8 right">
@@ -171,7 +170,7 @@
                             </div>
                             <div class="text-sum-1">
                                 <p class="content-text-sum">Tổng số tiền:</p>
-                                <span class="cost-sum">₫0</span>
+                                <span class="cost-sum">₫{{$order->gia}}</span>
                             </div>
                         </div>
                     </div>  

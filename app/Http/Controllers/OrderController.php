@@ -8,6 +8,14 @@ use Cart;
 
 class OrderController extends Controller
 {
+    public function getorder(){
+        $user = Auth::user()->id;
+ 
+        return DB::select("SELECT tbl_brand.brand_name nhacungcap, tbl_order.order_status trangthaidonhang,tbl_product.product_name tensanpham,tbl_order_details.product_sales_quantity soluong,tbl_order_details.product_price gia,tbl_product.product_image hinhanh, tbl_order.order_id iddonhang, tbl_category_product.category_name loaisanpham
+FROM tbl_order,tbl_order_details ,tbl_product ,users,tbl_brand,tbl_category_product
+WHERE tbl_order.order_id=tbl_order_details.order_id and tbl_product.product_id=tbl_order_details.product_id and users.id=tbl_order.customer_id and tbl_product.brand_id=tbl_brand.brand_id and tbl_category_product.category_id=tbl_product.category_id and users.id='$user'
+            ");
+    }
 
     public function index(){
         $user_id = Auth::user()->id;
@@ -47,7 +55,7 @@ class OrderController extends Controller
 
         $orderinfo = DB::select("select * from tbl_order_details ordt join tbl_order od on ordt.order_id=od.order_id join tbl_product p on p.product_id=ordt.product_id where od.order_id='$get_orderid' ");
 
-        return view ('trackorder')->with(['orderinfo' => $orderinfo]) ; 
+        return view('transaccount')->with(['orderinfo' => $this->getorder()]);
         
     }
 
